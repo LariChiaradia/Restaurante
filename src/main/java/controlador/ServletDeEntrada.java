@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -87,8 +88,30 @@ public class ServletDeEntrada extends HttpServlet {
 			dispatcher.forward(req, resp);
 			
 		}else if(acao.equals("cardapio")) {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/visao/Cardapio.jsp");
-			dispatcher.forward(req, resp);
+			
+			CardapioDao cardapioDao = new CardapioDao();
+			List<Cardapio> entradas = cardapioDao.filtrar("Entrada");
+			req.setAttribute("listaentrada", entradas);
+			
+			List<Cardapio> principais = cardapioDao.filtrar("Principal");
+			req.setAttribute("listaprincipal", principais);
+			
+			List<Cardapio> combos = cardapioDao.filtrar("Combos");
+			req.setAttribute("listadecombos", combos);
+			
+			List<Cardapio> sobremesas = cardapioDao.filtrar("Sobremesas");
+			req.setAttribute("listadesobremesas", sobremesas);
+			
+			List<Cardapio> bebidas = cardapioDao.filtrar("Bebidas");
+			req.setAttribute("listadebebidas", bebidas);
+			
+			if(Naologado) {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/visao/Cardapio.jsp");
+				dispatcher.forward(req, resp);
+			}else {
+				RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/visao/CardapioLogado.jsp");
+				dispatcher.forward(req, resp);
+			}
 			
 		}else if(acao.equals("altera")) {
 			
@@ -113,6 +136,8 @@ public class ServletDeEntrada extends HttpServlet {
 			cardapioDao.excluir(codigo);
 			
 			resp.sendRedirect("http://localhost:8080/Chiaradia_Restaurante/entrada?acao=cardapio");
+		}else if(acao.equals("filtrarentrada")) {
+
 		}
 		}
 	}
