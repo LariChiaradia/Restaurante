@@ -11,9 +11,12 @@
 </head>
 <body>
 
+	<a href="entrada?acao=logout"><button>Sair do Sistema</button></a>
+
 	<h1>Cardapio</h1>
-	
-	<a href="entrada?acao=formcadastra"><button>Cadastrar Novo Produto</button></a>
+
+	<a href="entrada?acao=formcadastra"><button>Cadastrar Novo
+			Produto</button></a>
 
 	<%
 	List<Cardapio> entradas = (List<Cardapio>) request.getAttribute("listaentrada");
@@ -42,7 +45,7 @@
 				<td><%=cardapio.getPreco()%></td>
 				<td><%=cardapio.getServe()%></td>
 				<td><a
-					href="entrada?acao=mostraporcodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
+					href="entrada?acao=filtrarPorCodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
 				<td><a
 					href="entrada?acao=excluir&codigo=<%=cardapio.getCodigo()%>">X</a></td>
 			</tr>
@@ -80,7 +83,7 @@
 				<td><%=cardapio.getPreco()%></td>
 				<td><%=cardapio.getServe()%></td>
 				<td><a
-					href="entrada?acao=mostraporcodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
+					href="entrada?acao=filtrarPorCodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
 				<td><a
 					href="entrada?acao=excluir&codigo=<%=cardapio.getCodigo()%>">X</a></td>
 			</tr>
@@ -117,7 +120,7 @@
 				<td><%=cardapio.getPreco()%></td>
 				<td><%=cardapio.getServe()%></td>
 				<td><a
-					href="entrada?acao=mostraporcodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
+					href="entrada?acao=filtrarPorCodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
 				<td><a
 					href="entrada?acao=excluir&codigo=<%=cardapio.getCodigo()%>">X</a></td>
 			</tr>
@@ -154,7 +157,7 @@
 				<td><%=cardapio.getPreco()%></td>
 				<td><%=cardapio.getServe()%></td>
 				<td><a
-					href="entrada?acao=mostraporcodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
+					href="entrada?acao=filtrarPorCodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
 				<td><a
 					href="entrada?acao=excluir&codigo=<%=cardapio.getCodigo()%>">X</a></td>
 			</tr>
@@ -191,7 +194,7 @@
 				<td><%=cardapio.getPreco()%></td>
 				<td><%=cardapio.getServe()%></td>
 				<td><a
-					href="entrada?acao=mostraporcodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
+					href="entrada?acao=filtrarPorCodigo&codigo=<%=cardapio.getCodigo()%>">Alterar</a></td>
 				<td><a
 					href="entrada?acao=excluir&codigo=<%=cardapio.getCodigo()%>">X</a></td>
 			</tr>

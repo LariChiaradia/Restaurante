@@ -71,7 +71,7 @@ public class CardapioDao {
 		
 		Connection con = Conexao.obterConexao();
 		
-		String sql = "UPDATE CARDAPIO SET nome_produto=?, descricao_produto=?, categoria_produto=?, preco=?";
+		String sql = "UPDATE CARDAPIO SET nome_produto=?, descricao_produto=?, categoria_produto=?, preco=?, serve=? WHERE id_produto=?";
 		
 		try {
 			PreparedStatement preparador = con.prepareStatement(sql);
@@ -80,11 +80,11 @@ public class CardapioDao {
 			preparador.setString(3, cardapio.getCategoria());
 			preparador.setDouble(4, cardapio.getPreco());
 			preparador.setInt(5, cardapio.getServe());
+			preparador.setInt(6, cardapio.getCodigo());
 			
 			preparador.execute();
 			
 			preparador.close();
-			
 			System.out.println("Alterações concluidas com sucesso!!!");
 		} catch (SQLException e) {
 			System.err.println("Erro ao alterar o produto!!!");
@@ -158,6 +158,40 @@ public class CardapioDao {
 		return cardapios;
 	}
 	
+	
+// Produtos Por codigo
+	
+	public Cardapio filtrarPorCodigo(int codigo) {
+		
+		Connection con = Conexao.obterConexao();
+		String sql = "SELECT * FROM CARDAPIO WHERE id_produto=?";
+		
+		Cardapio cardapio = null;
+		
+		try {
+			PreparedStatement preparador = con.prepareStatement(sql);
+			preparador.setInt(1, codigo);
+			ResultSet resultado = preparador.executeQuery();
+			
+			while(resultado.next()) {
+				cardapio = new Cardapio();
+				cardapio.setCodigo(resultado.getInt("id_produto"));
+				cardapio.setNome(resultado.getString("nome_produto"));
+				cardapio.setDescricao(resultado.getString("descricao_produto"));
+				cardapio.setCategoria(resultado.getString("categoria_produto"));
+				cardapio.setPreco(resultado.getDouble("preco"));
+				cardapio.setServe(resultado.getInt("serve"));
+				
+			}
+			
+		} catch (SQLException e) {
+			System.err.println("Erro, não foi possível atualizar o Cardápio!!!");
+			e.printStackTrace();
+		}
+		
+		return cardapio;
+		
+	}
 	
 // Conta
 	

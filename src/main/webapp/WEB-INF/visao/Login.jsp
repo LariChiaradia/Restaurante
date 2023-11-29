@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +7,25 @@
 <title>Login</title>
 </head>
 <body>
-	
-	<h1>Login</h1>
+	<style><%@include file="/WEB-INF/visao/css/Login.css"%></style>
 
-	<form method="post" action="entrada">
-	
-		Login: <input type="text" name="txtlogin"><br><br>
-		Senha: <input type="password" name="txtsenha"><br><br>
-		<input type="submit" value="Acessar Sistema">
-		<input type="hidden" name="acao" value="login">
-		
-	</form>
-	
+	<header>
+
+		<h1>Login</h1>
+
+	</header>
+
+	<main>
+		<form method="post" action="entrada">
+			<section class="inputs-container">
+			<input type="text" name="txtlogin" placeholder="Digite o seu usuário" required><br>
+			<br>
+			<input type="password" name="txtsenha" placeholder="Digite a sua senha" required><br>
+			</section>
+				<br> <button id="btn-login" type="submit">Acessar Sistema</button>
+					<input type="hidden" name="acao" value="login">
+
+		</form>
+	</main>
 </body>
 </html>

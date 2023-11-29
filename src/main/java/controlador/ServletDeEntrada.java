@@ -30,7 +30,7 @@ public class ServletDeEntrada extends HttpServlet {
 		
 		HttpSession sessao = req.getSession();
 		Boolean Naologado = sessao.getAttribute("NaoLogado") == null;
-		Boolean acessoProtegido = !(acao.equals("login") || acao.equals("formlogin") || acao.equals("homepage") || acao.equals("cardapio"));
+		Boolean acessoProtegido = !(acao.equals("login") || acao.equals("formlogin") || acao.equals("homepage") || acao.equals("cardapio") || acao.equals("altera"));
 		
 		if(Naologado && acessoProtegido) {
 			resp.sendRedirect("http://localhost:8080/Chiaradia_Restaurante/entrada?acao=formlogin");
@@ -113,15 +113,27 @@ public class ServletDeEntrada extends HttpServlet {
 				dispatcher.forward(req, resp);
 			}
 			
+		}else if(acao.equals("filtrarPorCodigo")) {
+			
+			Integer codigo = Integer.parseInt(req.getParameter("codigo"));
+			
+			CardapioDao cardapioDao = new CardapioDao();
+			Cardapio cardapio = cardapioDao.filtrarPorCodigo(codigo) ;
+			
+			req.setAttribute("cardapio", cardapio);
+			RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/visao/altera.jsp");
+			dispatcher.forward(req, resp);
+			
 		}else if(acao.equals("altera")) {
 			
+			Integer codigo = Integer.parseInt(req.getParameter("txtcodigo"));
 			String nome = req.getParameter("txtnome");
 			String descricao = req.getParameter("txtdescricao");
 			String categoria = req.getParameter("txtcategoria");
 			double preco = Double.parseDouble(req.getParameter("txtpreco"));
-			int serve = Integer.parseInt(req.getParameter("txtserve"));
+			Integer serve = Integer.parseInt(req.getParameter("txtserve"));
 			
-			Cardapio cardapio = new Cardapio(nome,descricao,categoria,preco,serve);
+			Cardapio cardapio = new Cardapio(codigo,nome,descricao,categoria,preco,serve);
 			
 			CardapioDao cardapioDao = new CardapioDao();
 			cardapioDao.alterar(cardapio);
@@ -138,6 +150,9 @@ public class ServletDeEntrada extends HttpServlet {
 			resp.sendRedirect("http://localhost:8080/Chiaradia_Restaurante/entrada?acao=cardapio");
 		}else if(acao.equals("filtrarentrada")) {
 
+		}else if(acao.equals("logout")) {
+			sessao.invalidate();
+			resp.sendRedirect("http://localhost:8080/Chiaradia_Restaurante/entrada?acao=login");
 		}
 		}
 	}

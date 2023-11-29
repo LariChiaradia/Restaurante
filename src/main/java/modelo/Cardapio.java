@@ -6,6 +6,18 @@ public class Cardapio {
 		
 	}
 	
+	public Cardapio(int codigo, String nome, String descricao, String categoria, double preco, int serve) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.categoria = categoria;
+		this.preco = preco;
+		this.serve = serve;
+	}
+
+
+
 	public Cardapio(String nome, String descricao, String categoria, double preco, int serve) {
 		super();
 		this.nome = nome;
