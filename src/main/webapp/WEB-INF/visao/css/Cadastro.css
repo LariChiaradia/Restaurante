@@ -27,21 +27,34 @@ main {
 	align-items: center;
 }
 
-.tabela, th, td{
-    border-collapse: collapse;
-    padding: 10px;
-    text-align: left;
-    background-color:  #ffffff;
-}
-td{
-	color: #000000;
-}
-th{
-    background-color: #383c42;
+main form {
+  margin-top: 10%;
+  width: 35%;
+  height: 50vh;
+  background-color: #383c42;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0, 4) inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  padding: 2%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-a{
-	color: #ff0000;
+main form .inputs-container {
+  margin-top: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main form input{
+	color: #000000;
+}
+
+main form select{
+	color: #000000;
 }
 
 main .Container {
@@ -81,9 +94,4 @@ main .button{
 	border-radius: 5px;
 	box-shadow: 0px 8px 8px rgb(0,0,0);
 	background-color: #ffffff;
-}
-
-main div{
-	display: flex;
-	flex-direction: row;
 }

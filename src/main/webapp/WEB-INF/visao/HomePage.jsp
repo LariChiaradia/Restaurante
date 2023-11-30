@@ -43,10 +43,8 @@
 				história culinária!</p>
 		</div>
 
-		<div>
-			<h2></h2>
-		</div>
 		<a href="entrada?acao=cardapio"><button>Ir para Cardápio</button></a>
+		<a href="entrada?acao=formlogin"><button>Login</button></a>
 	</main>
 </body>
 </html>
